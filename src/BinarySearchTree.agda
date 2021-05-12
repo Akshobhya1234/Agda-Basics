@@ -67,3 +67,39 @@ numbers = zero :: (3 :: (zero :: (1 :: (zero :: (2 :: (zero :: null))))))
 
 sort : List -> List
 sort xs = toList (foldr BinaryTree insert leaf xs)
+
+data Bound : Set where
+ top : Bound
+ value : Natural -> Bound
+ bottom : Bound
+
+data Zero : Set where
+
+data One : Set where
+ unit : One
+
+data Two : Set where
+ true : Two
+ false : Two
+
+_LE'_ : (x y : Natural) -> Set
+zero LE' y = One
+suc x LE' zero = Zero
+suc x LE' suc y = x LE' y
+
+--not important just an example start
+data Result : Set where
+ nice : Result
+
+
+{- precondition x LE y -}
+f : (x y : Natural)-> Result --No space after ')'
+f x y with x LE y
+f x y | true = nice
+f x y | false = nice
+
+g : (x y : Natural) -> (x LE' y) -> Result
+g zero y r = nice
+g (suc x) zero ()
+g (suc x) (suc y) r = nice
+-- example end
