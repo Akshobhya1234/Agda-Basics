@@ -57,5 +57,12 @@ true equivalent false = false
 false equivalent true = false
 false equivalent false = true
 
+--identity function 
 identityAgain : (X : Set) -> X  -> X
 identityAgain X x = x
+
+-- type \+e+l+l for ℓ
+open import Agda.Primitive
+AgainIf_then_else_ : {ℓ : Level} -> {X : Set ℓ} -> Boolean -> X -> X -> X
+AgainIf false then _ else x = x
+AgainIf true then y else _  = y
